@@ -1,0 +1,547 @@
+/* STANDAARD OPMAAK VANUIT MOBILE FIRST */
+
+
+/* Door gebruik te maken van * selecteer ik alle elementen op de pagina. Door border-box te gebruiken zorg ik ervoor dat de width en height waarden van elementen ook de padding en de border bevatten. */
+
+* {
+	box-sizing: border-box;
+	font-family: 'NS sans', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+@font-family;
+{
+	src: url("../fonts/nssans__-webfont.ttf");
+	src: url("../nssanbol-webfont.ttf");
+}
+
+
+/* De body heeft over elke pagina dezelfde background-color behalve op de aanmeld pagina. */
+
+html,
+body {
+	background-color: #ecf0f1;
+	width: 100%;
+	height: 100%;
+}
+
+/* Op de aanmeldpagina heeft de body een class om ervoor te zorgen dat hij een andere kleur krijgt. */
+
+.body {
+	background-color: #ffffff;
+}
+
+/* De main krijgt de volle breedte tot zijn beschikking, de transition is voor de verandering in opacity voor wanneer het filter gebruikt wordt. */
+
+main {
+	width: 100%;
+	transition: opacity 0.5s;
+}
+
+h1 {
+	position: relative;
+	top: 2em;
+	text-shadow: 0.1vw 0.1vw #000000;
+	width: 100%;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.3em;
+}
+
+h3 {
+	font-size: 1.17em;
+}
+
+h1,
+h2,
+h3 {
+	margin: 1em 0em;
+	color: #003082;
+}
+
+/* Verhaal styling. De verhalen zijn een achtergrond van een div. Deze hebben een width en heigt van 100% om het scherm te dekken. De achtergrondafbeeldingen veranderen per scherm. */
+main.verhaalpagina {
+	height: 100%;
+}
+
+main div {
+	height: 100%;
+	width: 100%;
+}
+
+main div.zombie {
+	height: 100%;
+	background-size: cover;
+	background-image: url(../images/Zombie_Mobiel.png);
+}
+
+main div.doof {
+	height: 100%;
+	background-size: cover;
+	background-image: url(../images/Doof_Mobiel.png);
+}
+
+/* Header styling */
+/* De header heeft shadow aan de onderkant. Prefixes zorgen ervoor dat het in verschillende browsers werkt. Door gebruik te maken van position fixed blijft de header staan wanneer er gescrolled wordt. Met z-index wordt de stapelvolgorde bepaald. Doordat deze 1 is zal de header boven de content blijven. De content glijdt er zodoende onderdoor. */
+
+header {
+	background-color: #ffc917;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	height: 4em;
+	-webkit-box-shadow: 0em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+	-moz-box-shadow: 0em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+	box-shadow: 0em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+}
+
+
+/* Hier wordt het logo in de header geselecteerd door de eerste img in een link waarvan de header de directe parent is, te pakken.  */
+
+header > a img:first-of-type {
+	position: absolute;
+	height: 2em;
+	left: 1em;
+	top: 1em;
+}
+
+/* De UL waarin de functies van de header staan wordt rechts geplaatst. */
+
+header ul {
+	width: 100%;
+	text-align: right;
+	line-height: 4em;
+	color: #003082;
+}
+
+header ul li {
+	display: inline-block;
+}
+
+header ul li a {
+	text-decoration: none;
+	color: #003082;
+}
+
+/* De iconen (img) worden doormiddel van 'vertizal-align' verticaal gecentreerd op de header. */
+
+header ul li img {
+	margin-right: 0.5em;
+	vertical-align: middle;
+}
+
+header ul li img:hover {
+	transform: skewX(170deg);
+}
+
+/* Op mobiel zijn de beschrijvende termen 'zoeken' en 'inloggen' verborgen. */
+
+header ul li p {
+	display: none;
+}
+
+/* Hier wordt de zoekbalk vormgegeven. Deze krijgt een width van 0 mee om ervoor te zorgen dat deze niet zichtbaar is. Dit zou ook met display:none gekund hebben, maar daar werkt de animatie niet op. */
+
+header ul li input {
+	border: none;
+	height: 3em;
+	padding: 0em;
+	background-color: #ffffff;
+	width: 0em;
+	transition: 1s;
+}
+
+/* Wanneer de gebruiker op 'zoeken' of het zoek-icoon klikt, wordt er met behulp van JS een class 'show' aan het input veld gegeven. Het input field met deze class wordt hieronder gestyled. Ik maak gebruik van 'vw' om ervoor te zorgen dat de zoekbalk op elk scherm een goede breedte heeft. */
+
+header ul li input.show {
+	width: 30vw;
+	padding: 1em;
+}
+
+/* De styling van het filter */
+/* BRON TER INSPIRATIE: http://usabilitypost.com/2011/04/19/pure-css-slideout-interface/ */
+/* Ik selecteer eerst de section die de body als directe parent heeft. Deze geef ik een 'fixed' position en een z-index om ervoor te zorgen dat deze altijd in beeld is en dat de rest van de content eronderdoor gaat. Door een 'right' van -8.5em te geven laat ik een deel van de section buiten het scherm vallen. Ook hang ik een transition aan deze 'right' voor latere animatie. */
+
+body > section {
+	position: fixed;
+	right: -8.5em;
+	background-color: #ffc917;
+	z-index: 1;
+	top: 10em;
+	height: 3em;
+	transition: right 0.5s;
+}
+
+/* Het icoon van het filter wordt met behulp van 'vertical-align' aan de bovenkant van de section geplaatst. */
+
+body > section img {
+	vertical-align: top;
+	height: 3em;
+	width: 3em;
+}
+
+/* Door de form een inline-block mee te geven komt deze naast de afbeelding */
+
+body > section form {
+	width: 8em;
+	background-color: #ffc917;
+	display: inline-block;
+}
+
+body > section form fieldset {
+	border: none;
+	padding: 1em;
+	display: block;
+}
+
+/* Met behulp van JS wordt er een class 'clicked' aan de section gehangen. Dit gebeurt wanneer de gebruiker op het filter icoon klikt. Wanneer de section deze class krijgt wordt de 'right' 0. Doordat ik eerder ene transition van 0.5s heb bepaald gebeurt dit op een geanimeerde manier. */
+
+body > section.clicked {
+	right: 0em;
+}
+
+/* Wanneer de gebruiker op het filter klikt wordt de class 'opacity' met behulp van JS aan de main toegevoegd. De main met deze class krijgt hieronder een opacity om zo de focus op het filter te leggen. */
+
+main.opacity {
+	opacity: 0.5;
+}
+
+/* Om de main op te maken maak ik gebruik van flexbox. De elementen binnen de main worden op een rij geplaatst wanneer er ruimte is. Als dit niet het geval is komen ze onder elkaar. */
+
+main {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+/* Door de articles 'position: relative' mee te geven zorg ik evoor dat ik elementen binnen dit article met position absolute kan plaatsen (het like hartje bijv). Als ik dit niet zou doen, zouden deze elementen geplaats worden t.o.v. de body wanneer ik gebruik zou maken van absoluut. */
+
+main article {
+	width: 100%;
+	background: #ffffff;
+	position: relative;
+}
+
+/* Het eerste article binnen de main is het verhaal van de dag en dus krijgt deze een andere achtergrond kleur. De margin-top wordt gebruikt om te voorkomen dat de helft van het article onder de header verdwijnt vanwege de styling van deze header. */
+
+main article:first-of-type {
+	background-color: #003082;
+	margin-top: 4em;
+}
+
+/* Zowel de h2 als de p van het verhaal van de dag krijgen een witte kleur. */
+
+main article:first-of-type h2 {
+	color: #ffffff;
+}
+
+main article:first-of-type p {
+	color: #ffffff;
+}
+
+main article img {
+	width: 100%;
+	height: 20em;
+}
+
+main article section {
+	padding: 1em;
+}
+
+/* Marging bottom om ruimte te maken voor het lees meer icoon. */
+
+main article section p {
+	line-height: 1.4em;
+	margin-bottom: 2em;
+}
+
+/* Het eerste icoon dat in een a zit van het eerste article krijgt een witte kleur */
+
+main article:first-of-type a i:first-of-type {
+	color: #ffffff;
+}
+
+/* De styling van het lees meer icoon. Doordat het article 'relative' gepositioneerd is kan ik met behulp van 'absolute' het icoon overal binnen dit article plaatsen. Deze komt dus rechts onder. Er wordt alvast een transition toegevoegd. */
+
+main article a i:first-of-type {
+	color: #003082;
+	position: absolute;
+	bottom: 0.3em;
+	right: 0.6em;
+	transition: right 0.5s;
+}
+
+/* Wanneer iemand over het icoon hovert, wordt de 'right' minder met een transition. */
+
+main article a i:first-of-type:hover {
+	right: 0.3em;
+}
+
+/* Styling van Like hartje */
+/* BRON: http://codepen.io/kieranfivestars/pen/PwzjgN, aantal dingen aangepast, span en div weggehaald. jQuery veranderd in Javascript. */
+/* Hartje wordt door middel van 'absolute' op het article geplaatst */
+main article > i:first-of-type {
+	cursor: pointer;
+	padding: 0.625em 0.750em 0.500em;
+	background: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	color: #aaa;
+	transition: 0.2s;
+	box-shadow: 0 0.188em 0.125em rgba(0, 0, 0, 0.3);
+	position: absolute;
+	right: 0.5em;
+	top: 18.850em;
+}
+
+main article > i:first-of-type:hover {
+	color: #666;
+}
+
+/* Met behulp van de library van fontawesome krijg ik een mooi icoon. */
+
+main article > i:first-of-type:before {
+	font-family: fontawesome;
+	content: '\f004';
+	font-style: normal;
+}
+
+/* Wanneer het icoon vanuit JS de class 'press' meekrigt wordt de animatie 'size' gestart en veranderd de kleur van het hartje. */
+
+main article > i:first-of-type.press {
+	animation: size 0.4s;
+	color: #e23b3b;
+}
+
+/* De drie verschillende states van de animatie die binnen 0.4s afgewerkt worden. */
+
+@keyframes size {
+	0% {
+		padding: 10px 12px 8px;
+	}
+	50% {
+		padding: 14px 16px 12px;
+		margin-top: -4px;
+	}
+	100% {
+		padding: 10px 12px 8px;
+	}
+}
+
+
+/* Footer styling */
+
+footer {
+	background-color: #ffc917;
+	color: #003082;
+	height: 2em;
+	margin-top: 1em;
+}
+
+footer p {
+	line-height: 2em;
+	text-align: center;
+}
+
+/* Styling van de aanmeldpagina */
+/* BRON: http://codepen.io/edoardo-bluframe/pen/ZWaPEq */
+/* Omdat op de index pagina een h2 in het wit gestyled is, was het nodig om voor de h2 op de aanmeld pagina een class aan te maken voor een andere styling. De h1 krijgt hier ook een wat andere styling om zo minder prominent aanwezig te zijn. */
+.header1 {
+	display: block;
+	width: 100%;
+	text-shadow: none;
+}
+
+.header2 {
+	display: block;
+	width: 100%;
+	color: #003082;
+	font-size: 2em;
+	text-align: center;
+	margin-top: 1em;
+}
+
+/* Het formulier benut de volle breedte op mobiel */
+	
+form.aanmeldpagina {
+	width: 100%;
+	background-color: #ffffff;
+}
+
+/* Het eerste formulier een margin-top meegeveb, omdat deze anders onder de h1 komt die vanuit de homepage een position relative mee heeft gekregen */
+form.aanmeldpagina:first-of-type {
+	margin-top: 3em;
+}
+
+/* Hier geef ik de input velden wat ruimte aan de bovenkant voor het animeren van de palceholder. Ook krijgen ze een padding zodat de teket beter leesbaar wordt. */
+form.aanmeldpagina fieldset {
+	margin-bottom: 1em;
+	padding: 1em;
+}
+
+/* Border om de fieldset weghalen. */
+form.aanmeldpagina  fieldset {
+	border: 0;
+}
+
+/* De placeholder en het input field krijgen een hoogte en een breedte mee */
+form.aanmeldpagina input, .floating-placeholder {
+	line-height: 2em;
+	height: 2em;
+	width: 100%;
+}
+
+form.aanmeldpagina .floating-placeholder input:valid {
+	line-height: 2.8em;
+}
+
+form.aanmeldpagina .floating-placeholder input:focus+label {
+	color: #16abf0;
+}
+
+form.aanmeldpagina .floating-placeholder {
+	position: relative;
+}
+
+form.aanmeldpagina .floating-placeholder input {
+	font-size: 1em;
+	border: none;
+	outline: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	background: transparent;
+	z-index: 1;
+	border-bottom: 0.01em solid #ccc;
+	text-indent: 1.250em;
+}
+
+form.aanmeldpagina .floating-placeholder label {
+	display: block;
+	position: absolute;
+	top: 0;
+	font-size: 1em;
+	z-index: 1;
+}
+
+form.aanmeldpagina .floating-placeholder input:valid~label {
+	top: -1em;
+}
+
+form.aanmeldpagina button {
+	width: 15em;
+	margin: auto;
+	color: #ffffff;
+	border: none;
+	height: 4em;
+	text-align: center;
+	background-color: #003082;
+}
+
+form.aanmeldpagina button:hover {
+	background-color: #16abf0;
+}
+
+/* SCHERMS BREDER DAN IPHONE 5 LIGGEND */
+
+@media (min-width: 31.250em) {
+	/* Ik geef de list items een marge omdat de beschrijvende tekst ernaast wordt weergegeven */
+	header ul li {
+		margin-right: 1em;
+	}
+	/* De beschrijvende teksten worden weergegeven */
+	header ul li p {
+		display: inline-block;
+	}
+	/* Geef de artikelen gelijkmatige ruimtes. Zo komen ze los van elkaar. */
+	main {
+		justify-content: space-around;
+	}
+	/* Articles worden 80% breed ipv 100%. Door space-around komen ze ook mooi in het midden te staan. Ook voeg ik een kleine schaduw toe aan alle articles */
+	main article {
+		width: 80%;
+		margin-bottom: 2em;
+		-webkit-box-shadow: 0.156em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+		-moz-box-shadow: 0.156em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+		box-shadow: 0.156em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+	}
+}
+
+/* IPAD EN BREDER */
+
+@media (min-width: 41em) {
+	/* Het verhaal van de dag wordt uit de flexbox gehaald en bovenaan weergegeven met een bijna volledige breedte */
+	main article:first-of-type {
+		display: block;
+		width: 95.5%;
+		margin-top: 6em;
+	}
+	/* De afbeelding van het eerste article komt links te staan ipv erbovenop */
+	main article:first-of-type img {
+		width: 47.5%;
+		height: 100%;
+		float: left;
+	}
+	/* Door de breedte van 50% en inline-block komt de tekst section naast de img te staan */
+	main article:first-of-type section {
+		width: 50%;
+		display: inline-block;
+	}
+	/* Het hartje krijgt een andere plek */
+	main article:first-of-type > i:first-of-type {
+		top: 1.8em;
+		right: 55%;
+	}
+	
+	/* De articles krijgen een andere breedte waardoor er 2 naast elkaar passen */
+	main article {
+		width: 45%;
+		margin-bottom: 2em;
+		-webkit-box-shadow: 0.156em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+		-moz-box-shadow: 0.156em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+		box-shadow: 0.156em 0.156em 0.078em 0em rgba(0, 0, 0, 0.30);
+	}
+	/* De tablet versies van de verhalen worden hier ingeladen */
+	main div.zombie {
+		background-image: url(../images/Zombie_Tablet.png);
+	}
+	main div.doof {
+		background-image: url(../images/Doof_tabet.png);
+	}
+	/* Formulier wordt minder breed en gecentreerd */
+	form.aanmeldpagina {
+	width: 50%;
+	margin: auto;
+	background-color: #ffffff;
+}
+}
+
+/* OPMAAK VOOR GROTERE SCHERMEN */
+@media (min-width: 62.500em) {
+	/* Articles krijgen een width van 30% waardoor er 3 naast elkaar passen */
+	main article {
+		width: 30%;
+	}
+	/* Het verhaal van de dag wordt breder om even breed te zijn als alle anderen samen */
+	main article:first-of-type {
+		width: 97%;
+	}
+	main article:first-of-type img {
+		width: 31%;
+	}
+	/* Het hartje moet ook iets verplaatst worden */
+	main article:first-of-type > i:first-of-type {
+		right: 70%;
+	}
+	
+	/* De desktop versies van de verhalen worden hier ingeladen */
+	main div.zombie {
+		background-image: url(../images/Zombie_Desktop.png);
+	}
+	main div.zombie {
+		background-image: url(../images/Doof_Desktop.png);
+	}
+}
